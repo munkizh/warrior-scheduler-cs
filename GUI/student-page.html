@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Major Advising</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1 id="header">
+        Computer Science Major Advising
+    </h1>
+    <div class = "studentinfo">
+        <div class = "center1">
+            <label for="studentname">Enter your name:</label><br>
+            <textarea id="studentname"></textarea><br>
+            <label for="studentemail">Enter your email:</label><br>
+            <textarea id="studentemail"></textarea><br>
+            <button id="next">Next</button><br> 
+            <button id="back">Go Back</button>
+        </div>
+    </div>
+
+<script>
+        document.getElementById("back").addEventListener("click", function() {
+            window.location.href = "sample.html"; 
+        });
+
+</script>
+
+
+</html>
