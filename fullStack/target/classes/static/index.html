@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hello World
+
+<button id="studentButton">Student</button>
+<button id="professorButton">Professor</button>
+</body>
+
+<script>
+    document.getElementById("studentButton").addEventListener("click", function() {
+        window.location.href = "/student";
+    });
+    document.getElementById("professorButton").addEventListener("click", function() {
+        window.location.href = "/professor";
+    });
+
+</script>
+</html>

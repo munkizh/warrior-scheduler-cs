@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #appointmentInfo {
+            display: none; /* Hide the appointment info div initially */
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Appointments for Professor Name</h1>
+<p>Select time:</p>
+
+<button id="selected">9:00 am</button>
+
+<div id="appointmentInfo">
+    <!-- This div will be populated with appointment details when selected -->
+    <!-- Initially hidden, but will be displayed after selecting a time -->
+</div>
+
+<script>
+    document.getElementById("selected").addEventListener("click", function() {
+        // Get the appointment time
+        var appointmentTime = this.textContent;
+
+        // Example data (replace with actual appointment details)
+        var professorName = "Professor Name";
+        var userName = "User Name";
+
+        // Populate the appointment info div
+        var appointmentInfoDiv = document.getElementById("appointmentInfo");
+        appointmentInfoDiv.innerHTML = `
+                <p>Appointment details:</p>
+                <p>Professor: ${professorName}</p>
+                <p>User: ${userName}</p>
+                <p>Time: ${appointmentTime}</p>
+                <button id="confirmAppointment">Confirm Appointment</button>
+            `;
+
+        // Show the appointment info div
+        appointmentInfoDiv.style.display = "block";
+
+        // Add event listener for the confirm appointment button
+        document.getElementById("confirmAppointment").addEventListener("click", function() {
+            // Example action (replace with actual action)
+            alert("Appointment confirmed!"); // Display confirmation message (you can replace this with your desired action)
+        });
+    });
+</script>
+</body>
+</html>

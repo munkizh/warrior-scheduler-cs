@@ -1,0 +1,6 @@
+this is a react app
+master branch - original branch following react app editing on it
+html-react-css - using html for webpage
+
+I am trying to create a front end for IntroJavaWeb project I am going to add a new branch to add front end
+to the project directly

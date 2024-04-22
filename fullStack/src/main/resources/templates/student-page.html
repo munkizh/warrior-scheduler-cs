@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>This is the student page :)</p>
+
+<form id="studentForm">
+    <label for="studentname">Enter your name:</label><br>
+    <input type="text" id="studentname" name="studentname"><br>
+    <label for="studentemail">Enter your email:</label><br>
+    <input type="email" id="studentemail" name="studentemail"><br>
+    <button type="submit" id="next">Next</button><br>
+</form>
+
+<script>
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get form data
+        var formData = new FormData(document.getElementById("studentForm"));
+        fetch("/saveUser", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                // Redirect to appointments page
+                window.location.href = "/appointments"; // Change to the appropriate URL
+            })
+            .catch(error => {
+                // Handle error
+                console.error("Error:", error);
+            });
+    });
+</script>
+</body>
+</html>
