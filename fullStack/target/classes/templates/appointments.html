@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CS Advising - Appointment Booking</title>
     <style>
         #appointmentInfo {
-            display: none; /* Hide the appointment info div initially */
+            display: none;
             border: 1px solid #ccc;
             padding: 10px;
             margin-top: 10px;
@@ -14,49 +14,68 @@
 </head>
 <body>
 <p>CS Advising - Hello <span th:text="${savedName}"></span></p>
-<h1>Appointments for Professor Name</h1>
+<h1>Book Your Appointment</h1>
+
+<p>Select Professor:</p>
+<select id="professorSelect">
+    <option th:each="professor : ${professors}"
+            th:text="${professor.name}"
+            th:value="${professor.id}">Professor Name</option>
+    <option value="Ayat Hatem">Ayat Hatem</option>
+    <option value="Olivera Grujic">Olivera Grujic</option>
+    <option value="Thomas Carter">Thomas Carter</option>
+    <option value="Dae Hee Kim">Dae Hee Kim</option>
+    <option value="Melanie Martin">Melanie Martin</option>
+</select>
+
+<p>Select Date:</p>
+<input type="date" id="dateSelect">
+
 
 <p>Select time:</p>
+<div id="timeSlots">
+    <th:block th:each="hour : ${#numbers.sequence(9, 17)}">
+        <button class="timeSlot"
+                th:text="${hour == 12 ? (hour) + ' PM' : hour > 12 ? (hour - 12) + ' PM' : hour + ' AM'}"
+                th:value="${hour}"></button>
+    </th:block>
+</div>
 
-<button id="selected">9:00 am</button>
 <input type="hidden" id="hiddenSavedName" th:value="${hiddenSavedName}">
 
 <div id="appointmentInfo">
     <!-- This div will be populated with appointment details when selected -->
-    <!-- Initially hidden, but will be displayed after selecting a time -->
 </div>
 
 <script>
-    //google idea
-    const savedNameElement = document.getElementById("hiddenSavedName");
-    const savedName = savedNameElement.value;
-    // Use savedName variable for further processing or display in JavaScript
+    document.querySelectorAll('.timeSlot').forEach(button => {
+        button.addEventListener('click', function() {
+            const professorSelected = document.querySelector('#professorSelect option:checked').text;
+            const dateSelected = document.getElementById('dateSelect').value;
+            const appointmentTime = this.textContent;
 
-    document.getElementById("selected").addEventListener("click", function() {
-        // Get the appointment time
-        var appointmentTime = this.textContent;
-
-        // Example data (replace with actual appointment details)
-        var professorName = "Professor Name";
-        var userName = "User Name";
-
-        // Populate the appointment info div
-        var appointmentInfoDiv = document.getElementById("appointmentInfo");
-        appointmentInfoDiv.innerHTML = `
+            const appointmentInfoDiv = document.getElementById('appointmentInfo');
+            appointmentInfoDiv.innerHTML = `
                 <p>Appointment details:</p>
-                <p>Professor: ${professorName}</p>
-                <p>Name: <span th:text="${savedName}"></span></p>
+                <p>Professor: ${professorSelected}</p>
+                <p>Name: <span>${document.getElementById('hiddenSavedName').value}</span></p>
+                <p>Date: ${dateSelected}</p>
                 <p>Time: ${appointmentTime}</p>
-                <button id="confirmAppointment">Confirm Appointment</button>
             `;
+            appointmentInfoDiv.style.display = "block";
 
-        // Show the appointment info div
-        appointmentInfoDiv.style.display = "block";
-
-        // Add event listener for the confirm appointment button
-        document.getElementById("confirmAppointment").addEventListener("click", function() {
-            // Example action (replace with actual action)
-            alert("Appointment confirmed!"); // Display confirmation message (you can replace this with your desired action)
+            document.getElementById('confirmAppointment')?.remove();
+            let confirmBtn = document.createElement('button');
+            confirmBtn.id = 'confirmAppointment';
+            confirmBtn.textContent = 'Confirm Appointment';
+            confirmBtn.addEventListener('click', function() {
+                const confirmed = confirm("Are you sure you want to confirm this appointment?");
+                if (confirmed) {
+                    alert("Appointment confirmed!");
+                    // Here you can add additional logic to handle the confirmation, such as submitting form data
+                }
+            });
+            appointmentInfoDiv.appendChild(confirmBtn);
         });
     });
 </script>
