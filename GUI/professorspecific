@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Science Major Advising</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <h1 id="header">
+            Computer Science Major Advising
+    </h1>
+    
+    <div class="row">
+        <div id="columnLeft" style="background-color:#f2f2f2;">
+
+            <div class="header-container">
+                <div>
+                    <h2>Available Times for 
+                        <select>
+                            <option value="professor1">Dr. Professor Name</option>
+                            <option value="professor2">Professor Name</option>
+                        </select>
+                    </h2>
+                </div>
+                <div class="right-align">
+                    <span class="dot"></span>
+                    <p class="available-text">available</p>
+                </div>
+            </div>
+
+            <h2>
+
+            <h3 style="text-align: center;"> April 2024
+            <table id="timetable">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday<br> 8</th>
+                  <th>Tuesday<br> 9</th>
+                  <th>Wednesday<br>10</th>
+                  <th>Thursday<br>11</th>
+                  <th>Friday<br>12</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>9:00 AM - 9:15 AM</td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                  <td class="notavailable"></td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                </tr>
+                <tr>
+                  <td>9:15 AM - 9:30 AM</td>
+                  <td></td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                </tr>
+                <td>9:30 AM - 9:45 AM</td>
+                  <td class="notavailable"></td>
+                  <td class="available"></td>
+                  <td class="available"></td>
+                  <td class="notavailable"></td>
+                  <td class="available"></td>
+                </tr>
+                <tr>
+                  <td>9:45 AM - 10:00 AM</td>
+                  <td></td>
+                  <td class="available"></td>
+                  <td class="notavailable"></td>
+                  <td class="notavailable"></td>
+                  <td class="available"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="columnRight" style="background-color:#c2bbba;">
+                <p style="text-align: center;">
+                    <b>Confirm Appointment</b>
+                </p>
+
+                <p style="margin-left: 15px">
+                    Major Advising appointment<br>
+
+                    <b>Professor:</b> Dr. Professor Name<br>
+
+                    <b>Date:</b> Tuesday April 9, 2024<br>
+
+                    <b>Time:</b> 9:00 AM - 9:15 AM<br>
+                </p>
+
+                <div id = "confirmButton" style="text-align: center;">
+                    <button id="confirm">confirm</button>
+                </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.querySelectorAll('td.available').forEach(item => {
+        item.addEventListener('click', event => {
+            item.classList.toggle('selected');
+        });
+    });
+</script>
+</html>
