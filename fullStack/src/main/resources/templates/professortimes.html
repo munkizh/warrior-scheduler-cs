@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Advising - Professor Availability</title>
+    <style>
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="time"] {
+            margin-bottom: 10px;
+            display: inline-block; /* Display input fields inline */
+            /* width: 5%; /* Set width to 45% for equal distribution */
+        }
+
+        button {
+
+            border-radius: 12px;
+            margin: 10px;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #813336;
+            color: #ffffff;
+
+        }
+
+        #appointments {
+            margin-top: 20px;
+        }
+        .appointment {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .appointment span {
+            margin-right: 10px;
+        }
+
+        .row {
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .timeFrame{
+            margin-left: 10px;
+        }
+        #columnRight {
+            display: none; /* Initially hide the right column */
+            flex: 25%;
+            /*height: 465px;*/
+            /*text-align: center;*/
+            margin-left: 10px;
+            font-size: 12px;
+            line-height: 30px;
+            background-color:#c2bbba; /* Moved background color here */
+            font-family: Helvetica, sans-serif;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #813336;
+
+        }
+
+        #columnLeft {
+            flex: 75%;
+            background-color:#f2f2f2; /* Moved background color here */
+            font-family: Helvetica, sans-serif;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #813336;
+        }
+        #header {
+            text-align: center;
+            color: #000000;
+            font-size: 30px;
+            font-family: Helvetica, sans-serif;
+        }
+        h1 {
+            margin-top: 12px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+
+
+        #addTimeFrame, #generateAppointments {
+            width: 90px;
+            height: 30px;
+            font-size: 11px; /* Larger font size for the confirm button */
+            align-items: center;
+        }
+        .delete-button{
+            width: 90px;
+            height: 20px;
+            font-size: 9px; /* Larger font size for the confirm button */
+            align-items: center;
+        }
+
+        .header-bar {
+            text-align: center;
+            margin-top: 12px;
+            background-color: #d9d9d9; /* Background color of the bar */
+            height: 80px; /* Height of the bar */
+            width: 100%; /* Full width of the viewport */
+            border-top: 2px solid #813336; /* Top border */
+            border-bottom: 2px solid #813336; /* Bottom border */
+            padding-top: 15px;
+        }
+
+        .header-link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit color from parent (same as surrounding text) */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="header-link">
+        <div class="header-bar">
+            <h1> Computer Science Major Advising </h1>
+        </div>
+    </a>
+</header>
+<div class="row">
+
+
+    <div id="columnLeft">
+
+        <h2>Enter your available hours:</h2>
+        <div id="timeFrames">
+            <div class="timeFrame">
+                <label for="startTime">Start Time:</label>
+                <input type="time" class="startTime" required>
+                <label for="endTime">End Time:</label>
+                <input type="time" class="endTime" required>
+            </div>
+        </div>
+        <button id="addTimeFrame">Add Time Frame</button>
+
+        <button id="generateAppointments">Generate Appointments</button>
+    </div>
+    <div id="columnRight">
+        <!-- Appointments will be displayed here -->
+    </div>
+</div>
+<script>
+    document.getElementById('addTimeFrame').addEventListener('click', function() {
+        const timeFramesDiv = document.getElementById('timeFrames');
+
+        const timeFrameDiv = document.createElement('div');
+        timeFrameDiv.classList.add('timeFrame');
+
+        const label1 = document.createElement('label');
+        label1.textContent = 'Start Time:';
+        const input1 = document.createElement('input');
+        input1.type = 'time';
+        input1.classList.add('startTime');
+        input1.required = true;
+
+        const label2 = document.createElement('label');
+        label2.textContent = 'End Time:';
+        const input2 = document.createElement('input');
+        input2.type = 'time';
+        input2.classList.add('endTime');
+        input2.required = true;
+
+        timeFrameDiv.appendChild(label1);
+        timeFrameDiv.appendChild(input1);
+        timeFrameDiv.appendChild(label2);
+        timeFrameDiv.appendChild(input2);
+
+        timeFramesDiv.appendChild(timeFrameDiv);
+    });
+
+    document.getElementById('generateAppointments').addEventListener('click', function() {
+        const appointments = [];
+        const timeFrameDivs = document.querySelectorAll('.timeFrame');
+
+        timeFrameDivs.forEach(function(timeFrameDiv) {
+            const startTime = timeFrameDiv.querySelector('.startTime').value;
+            const endTime = timeFrameDiv.querySelector('.endTime').value;
+
+            const startDate = new Date(`2024-01-01T${startTime}`);
+            const endDate = new Date(`2024-01-01T${endTime}`);
+
+            generateAppointments(startDate, endDate, appointments);
+        });
+
+        displayAppointments(appointments);
+        document.getElementById('columnRight').style.display = 'block'; // Show the right column
+    });
+
+    function generateAppointments(startTime, endTime, appointments) {
+        const fifteenMinutes = 15 * 60 * 1000; // 15 minutes in milliseconds
+
+        let currentTime = new Date(startTime);
+
+        while (currentTime < endTime) {
+            const appointment = {
+                start: new Date(currentTime),
+                end: new Date(currentTime.getTime() + fifteenMinutes)
+            };
+            appointments.push(appointment);
+            currentTime.setTime(currentTime.getTime() + fifteenMinutes);
+        }
+    }
+
+    function displayAppointments(appointments) {
+        const appointmentsDiv = document.getElementById('columnRight');
+        appointmentsDiv.innerHTML = '';
+
+        const ul = document.createElement('ul');
+
+        // Create list items for each appointment
+        appointments.forEach(function(appointment, index) {
+            const li = document.createElement('li');
+            li.classList.add('appointment');
+
+            const span = document.createElement('span');
+            span.textContent = `${appointment.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${appointment.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+            li.appendChild(span);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.classList.add('delete-button');
+
+            deleteBtn.addEventListener('click', function() {
+                deleteAppointment(appointment, appointments, li);
+            });
+            li.appendChild(deleteBtn);
+
+            ul.appendChild(li);
+        });
+
+        appointmentsDiv.appendChild(ul);
+    }
+
+    function deleteAppointment(appointment, appointments, listItem) {
+        const index = appointments.findIndex(a => a === appointment);
+        if (index !== -1) {
+            appointments.splice(index, 1);
+            listItem.remove();
+        }
+    }
+</script>
+</body>
+</html>
