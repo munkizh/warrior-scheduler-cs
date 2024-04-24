@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS Advising - Professor Appointments</title>
+    <style>
+        #header {
+            text-align: center;
+            color: #000000;
+            font-size: 30px;
+            font-family: Helvetica, sans-serif;
+        }
+        h1,h3 {
+            margin-top: 12px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+        button {
+
+            border-radius: 12px;
+            margin: 10px;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #813336;
+            color: #ffffff;
+
+        }
+
+        .containerforbuttons {
+            height: 200px;
+            position: relative;
+        }
+        .header-bar {
+            text-align: center;
+            margin-top: 12px;
+            background-color: #d9d9d9; /* Background color of the bar */
+            height: 80px; /* Height of the bar */
+            width: 100%; /* Full width of the viewport */
+            border-top: 2px solid #813336; /* Top border */
+            border-bottom: 2px solid #813336; /* Bottom border */
+            padding-top: 15px;
+        }
+        .containerforbuttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        /* Style for container */
+        .containerforsample {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        /* Style for rounded box */
+        .rounded-box {
+            margin-bottom: 10x;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            width: 700px;
+            height: 250px;
+            text-align: center;
+            border: 2px solid #813336;
+        }
+
+        .header-link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit color from parent (same as surrounding text) */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="header-link">
+        <div class="header-bar">
+            <h1> Computer Science Major Advising </h1>
+        </div>
+    </a>
+</header>
+<h1 style="font-family: Helvetica, sans-serif">This one needs to be done <br>
+    site under construction 🚧</h1>
+<p style="font-size: 10px; font-family:Helvetica, sans-serif;text-align: center;">
+    This page will be like where the professor can see their upcoming appointments and things like that
+student info</p>
+</body>
+</html>
