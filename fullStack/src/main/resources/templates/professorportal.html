@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Advising - Professor Portal</title>
+    <style >
+        #header {
+            text-align: center;
+            color: #000000;
+            font-size: 30px;
+            font-family: Helvetica, sans-serif;
+        }
+        h1 {
+            margin-top: 12px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+        button {
+
+            border-radius: 12px;
+            margin: 10px;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #813336;
+            color: #ffffff;
+
+        }
+
+        .containerforbuttons {
+            height: 200px;
+            position: relative;
+        }
+        .header-bar {
+            text-align: center;
+            margin-top: 12px;
+            background-color: #d9d9d9; /* Background color of the bar */
+            height: 80px; /* Height of the bar */
+            width: 100%; /* Full width of the viewport */
+            border-top: 2px solid #813336; /* Top border */
+            border-bottom: 2px solid #813336; /* Bottom border */
+            padding-top: 15px;
+        }
+        .containerforbuttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        /* Style for container */
+        .containerforsample {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        /* Style for rounded box */
+        .rounded-box {
+            margin-bottom: 10x;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            width: 700px;
+            height: 250px;
+            text-align: center;
+            border: 2px solid #813336;
+            font-family: Helvetica, sans-serif;
+        }
+        .header-link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit color from parent (same as surrounding text) */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="header-link">
+        <div class="header-bar">
+            <h1> Computer Science Major Advising </h1>
+        </div>
+    </a>
+</header>
+
+<div class="containerforsample">
+    <div class="rounded-box">
+        <h3>
+            Welcome Professor Name
+        </h3>
+        <div class = "containerforbuttons">
+            <button id="setAvailability">Set Availability</button>
+            <button id="viewAppointments">View Appointments</button>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Function to handle professor button click
+    document.getElementById("setAvailability").addEventListener("click", function() {
+        window.location.href = "/professortimes";
+    });
+
+
+    document.getElementById("viewAppointments").addEventListener("click", function() {
+        window.location.href = "/professorappointments";
+        page
+    });
+</script>
+</body>
+</html>
