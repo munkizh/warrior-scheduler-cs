@@ -4,19 +4,156 @@
     <meta charset="UTF-8">
     <title>CS Advising - Appointment Booking</title>
     <style>
-        #appointmentInfo {
-            display: none;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
+
+        #header {
+            text-align: center;
+            color: #000000;
+            font-size: 30px;
+            font-family: Helvetica, sans-serif;
+        }
+        h1,h3 {
+            margin-top: 12px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="time"] {
+            margin-bottom: 10px;
+            display: inline-block; /* Display input fields inline */
+            /* width: 5%; /* Set width to 45% for equal distribution */
+        }
+
+
+        .header-bar {
+            text-align: center;
+            margin-top: 12px;
+            background-color: #d9d9d9; /* Background color of the bar */
+            height: 80px; /* Height of the bar */
+            width: 100%; /* Full width of the viewport */
+            border-top: 2px solid #813336; /* Top border */
+            border-bottom: 2px solid #813336; /* Bottom border */
+            padding-top: 15px;
+        }
+
+        button {
+
+            border-radius: 12px;
+            margin: 10px;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #813336;
+            color: #ffffff;
+
+        }
+
+        #appointments {
+            margin-top: 20px;
+        }
+        .appointment {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .appointment span {
+            margin-right: 10px;
+        }
+
+        .row {
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .timeFrame{
+            margin-left: 10px;
+        }
+        #columnRight {
+            display: none; /* Initially hide the right column */
+            flex: 25%;
+            /*height: 465px;*/
+            /*text-align: center;*/
+            margin-left: 10px;
+            font-size: 12px;
+            line-height: 30px;
+            background-color:#c2bbba; /* Moved background color here */
+            font-family: Helvetica, sans-serif;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #813336;
+
+        }
+
+        #columnLeft {
+            flex: 75%;
+            background-color:#f2f2f2; /* Moved background color here */
+            font-family: Helvetica, sans-serif;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #813336;
+        }
+        #header {
+            text-align: center;
+            color: #000000;
+            font-size: 30px;
+            font-family: Helvetica, sans-serif;
+        }
+        h1 {
+            margin-top: 12px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+
+
+        #addTimeFrame, #generateAppointments {
+            width: 90px;
+            height: 30px;
+            font-size: 11px; /* Larger font size for the confirm button */
+            align-items: center;
+        }
+        .delete-button{
+            width: 90px;
+            height: 20px;
+            font-size: 9px; /* Larger font size for the confirm button */
+            align-items: center;
+        }
+
+        .header-bar {
+            text-align: center;
+            margin-top: 12px;
+            background-color: #d9d9d9; /* Background color of the bar */
+            height: 80px; /* Height of the bar */
+            width: 100%; /* Full width of the viewport */
+            border-top: 2px solid #813336; /* Top border */
+            border-bottom: 2px solid #813336; /* Bottom border */
+            padding-top: 15px;
+        }
+
+        .header-link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit color from parent (same as surrounding text) */
         }
     </style>
 </head>
 <body>
-<p>CS Advising - Hello <span th:text="${savedName}"></span></p>
-<h1>Book Your Appointment</h1>
 
-<p>Select Professor:</p>
+<header>
+    <a href="/" class="header-link">
+        <div class="header-bar">
+            <h1> Computer Science Major Advising </h1>
+        </div>
+    </a>
+</header>
+
+<!--- <p>CS Advising <span th:text="${savedName}"></span></p> --->
+<h3>Book Your Appointment</h3>
+
+<h2>Select Professor:</h2>
 <select id="professorSelect">
     <option th:each="professor : ${professors}"
             th:text="${professor.name}"
@@ -28,11 +165,11 @@
     <option value="Melanie Martin">Melanie Martin</option>
 </select>
 
-<p>Select Date:</p>
+<h2>Select Date:</h2>
 <input type="date" id="dateSelect">
 
 
-<p>Select time:</p>
+<h2>Select time:</h2>
 <div id="timeSlots">
     <th:block th:each="hour : ${#numbers.sequence(9, 17)}">
         <button class="timeSlot"
@@ -56,11 +193,11 @@
 
             const appointmentInfoDiv = document.getElementById('appointmentInfo');
             appointmentInfoDiv.innerHTML = `
-                <p>Appointment details:</p>
-                <p>Professor: ${professorSelected}</p>
-                <p>Name: <span>${document.getElementById('hiddenSavedName').value}</span></p>
-                <p>Date: ${dateSelected}</p>
-                <p>Time: ${appointmentTime}</p>
+                <h2>Appointment details:</h2>
+                <h2>Professor: ${professorSelected}</h2>
+                <h2>Name: <span>${document.getElementById('hiddenSavedName').value}</span></h2>
+                <h2>Date: ${dateSelected}</h2>
+                <h2>Time: ${appointmentTime}</h2>
             `;
             appointmentInfoDiv.style.display = "block";
 
